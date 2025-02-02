@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="無限の可能性を秘めたRAINPASSのパワー">
+    <meta name="keywords" content="RAINPASS, One Time ID, ワンタイムID, 株式会社イノス, Innoaus" />
+    <link rel="shortcut icon" href="/favicon.ico">
+	<link rel="alternate" hreflang="ja" href="https://rainpass.io/ja/tech" />
+    <link rel="alternate" hreflang="ko" href="https://rainpass.io/ko/tech" />
+    <title>RAINPASS Technology</title>
+    <meta property="og:site_name" content="RAINPASS" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rainpass.io/ja/tech" />
+    <meta property="og:title" content="RAINPASS Technology" />
+    <meta property="og:description" content="無限の可能性を秘めたRAINPASSのパワー" />
+    <meta property="og:image" content="https://rainpass.io/hp/w_assets/rainpass_app_icon.jpg" />
+    <link href="/hp/w_assets/style.css?v=1.1" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-89793612-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+</head>
+
+<body id="tech" class="ja">
+<!--new -->
+<nav id="nav" class="navbar">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+           <i class="fa fa-bars"></i>
+         </button>
+          <a class="navbar-brand" href="/ja/"><img src="/hp/w_assets/images/logo_rainpass_s.png" alt="RAINPASS"></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="/ja/tech">Technology</a></li>
+              <li class=""><a href="/ja/mobile-app">Mobile App</a></li>
+              <li class=""><a href="/ja/smartcard">SmartCard</a></li>
+              <li class=""><a href="https://demo.rainpass.io/ja/login" target="_blank">Demo</a></li>
+          </ul>
+      </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</nav>
+<section id="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>RAINPASS Technology</h1>
+                <p>Randomly Automatically generated Identification Number &amp; PASScode</p>
+            </div>
+        </div>
+    </div>
+</section>
+<article id="content-wrap">
+  <div class="container" id="overview">
+      <div class="row">
+          <div class="col-sm-12">
+            <h2>RAINPASS特徴</h2>
+            <ul>
+                <li>一定間隔でシステムの間に同じIDを同時生成</li>
+                <li>IDを生成するためにシステム間のデータ交換が必要ないため、オフライン上で動作</li>
+                <li>IDが固定されていないため、パスワードが必要ない</li>
+                <li>IDは数字、英大/小文字、記号　<()~@#$%&()+-[]{}./<=>?"; の組み合わせが可能</li>
+                <li>ID生成文字数を設定可能<br>
+                  （数字(10), 英大文字(26)/小文字(26)の組み合わせの8桁文字生成時 218,340,105,584,896個(62<sup>8</sup>)のID同時生成）
+                </li>
+                <li>異なる文字数のOne Time IDを同時生成（8,32,128桁など）<br>
+                  （8桁は人が入力などに利用、その他はシステム間の認証（Token）などに利用）</li>
+                <li>ID生成周期を設定可能（30秒、45秒、60秒など）</li>
+                <li>C, C++, C#, javaなどほぼすべての言語で実装可能</li>
+                <li>CPU, MCUが搭載されたすべてのシステムに実装可能</li>
+                <li>軽量（<a href="/ja/smartcard">RAINPASS SmartCard</a>に実装したアルゴリズムの大きさはわずか6KB）</li>
+            </ul>
+
+          <div class="clearfix large"></div>
+
+          <h2>OTPとの違い</h2>
+          <p>OTPはサーバーとOTP生成器の間に同じ文字列を生成するが、生成された文字列がサーバー上でユニークであるという保障がありません。
+            よってOTPは必ず識別子(ID)と一緒に利用しなければいけません。<br>
+            RAINPASSで生成された文字列自体がサーバー上でユニークであるため、識別子(ID)が必要ありません。</p>
+
+            <div class="clearfix large"></div>
+
+            <div >
+              <h2>RAINPASSアルゴリズム</h2>
+              <p>
+<a href="https://en.wikipedia.org/wiki/HMAC-based_One-time_Password_Algorithm" target="_blank">HTOP</a> (HMAC-based One Time Password, RFC 4226)と<a href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm" target="_blank">TOTP</a> (Time-Based One Time Password, RFC 6238)アルゴリズムを応用し、OTPから生成された値がユニークな値になるように独自アルゴリズムを(One-way Transcoder)を開発<br /><span class="tech badge">世界初</span> <span class="tech badge">特許出願済み</span>
+</p>
+              <div class="row" style="padding-top:30px;">
+                  <div class="col-sm-7 text-right">
+                    <img src="/hp/w_assets/images/rainpass_algorithm.png" alt="" style="max-width: 100%;">
+                  </div>
+                  <div class="col-sm-5">
+                      <ul>
+                          <li>S : secret</li>
+                          <li>T : timestamp</li>
+                          <li>OTP Generator : RFC6238 TOTP</li>
+                          <li>One-way Transcoder : Unique code generator</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+            <div class="clearfix large"></div>
+
+
+
+          </div><!-- col-->
+
+      </div>
+  </div>
+</article>
+
+
+
+<section id="rainpass-apply">
+  <div class="container">
+          <div class="col-sm-12 text-center">
+              <h2 class="title">RAINPASS活用</h2>
+          </div>
+
+    <div class="row">
+          <div class="col-sm-4 col-wrap">
+              <div class="icon-apply">
+              <a href="/ja/smartcard"><img src="/hp/w_assets/images/icon_l_rainpass_smartcard.png" /></a>
+              </div>
+            <h3>RAINPASS Smart Card</h3>
+            <p>RAINPASSアルゴリズムをSmartCardに搭載<br />SmartCardからOne Time IDを生成</p>
+            <div class="app-btn-fill">
+                <a href="/ja/smartcard" class="button" >詳細</a>
+            </div>
+            
+          </div>
+          <div class="col-sm-4 col-wrap">
+              <div class="icon-apply">
+              <a href="/ja/ssh"><img src="/hp/w_assets/images/icon_l_ssh.png" /></a>
+              </div>
+            <h3>RAINPASS SSH</h3>
+            <p>SSHユーザー管理<br />ユーザーが変わるたびにパスワードまたはキーを管理する必要がありません</p>
+            <div class="app-btn-fill">
+                <a href="/ja/ssh" class="button" >詳細</a>
+            </div>
+          </div>
+          <div class="col-sm-4 col-wrap">
+              <div class="icon-apply">
+              <a href="/ja/encryption"><img src="/hp/w_assets/images/icon_l_encryption.png" /></a>
+              </div>
+                <h3>RAINPASS Encryption</h3>
+                <p>EncryptとDecryptのシークレットキーにRAINPASS One Time IDを利用<br /><br />
+                </p>
+                <div class="app-btn-fill">
+                    <a href="/ja/encryption" class="button" >詳細</a>
+                </div>
+          </div>
+    </div>
+  </div>
+</section>
+
+<section id="get-start">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-6 col-wrap">
+                <p>RAINPASS Mobile Appを利用した<br>ユーザー認証デモを体験してください</p>
+                <div class="app-btn-line">
+                    <a href="https://demo.rainpass.io/ja/login" class="button" target="_blank"><i class="fa fa-check"></i> DEMO</a>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-wrap">
+                <p>RAINPASSのパワーをあたなのシステムに応用してみてください<br>（近日中RAINPASS API提供予定)</p>
+                <div class="app-btn-line">
+                    <div class="button"><i class="fa fa-cloud"></i> RAINPASS Cloud (Coming soon)</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <p>
+          <a href="https://innoaus.com/ja/" target="_blank" title="株式会社イノス">
+		  <img src="/hp/w_assets/images/innoaus_logo_w.png" alt="株式会社イノス" style="width:200px;" /></a>
+          <br /><br />
+          <img src="/hp/w_assets/images/foot_mail.png"/><br /><br />
+          &copy; 2025 Innoaus Inc. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+</body>
+
+</html>
